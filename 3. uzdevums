@@ -1,0 +1,32 @@
+# include <iostream>
+# include <cmath>
+using namespace std;
+	
+int vms(int Vkmh)
+{
+	return Vkmh / 3.6; // metri sekunde = kilometri stunda / 3.6
+}
+
+int meet_time(int kmh1, int kmh2, int km)
+{
+	return km*1000 / (vms(kmh1) + vms(kmh2));  
+// metri ir km * 1000
+// aprekina abu auto atrumu m/s, tad abus saskaita kopa, lai uzzinatu kopejo atrumu
+// tad attalumu dala ar kopejo atrumu = tiksanas laiks
+}
+
+int main()
+{
+	int kmh1, kmh2, km;
+	cout << "Ievadiet 1. auto atrumu km/h" << endl;
+	cin >> kmh1;
+	cout << "Ievadiet 2. auto atrumu km/h" << endl;
+	cin >> kmh2;
+	cout << "Ievadiet attalumu starp abiem auto km" << endl;
+	cin >> km;
+	
+	cout << "Tiksanas laiks ir " << meet_time(kmh1, kmh2, km) << " sekundes" <<endl;
+	
+	system("pause");
+	return 0;
+}
