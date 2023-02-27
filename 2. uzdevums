@@ -2,33 +2,39 @@
 #include <cmath>
 using namespace std;
 
-double circle_area(double R)  // Funkcija laukuma aprekinasanai = Pi * r kvadrata
+double maksa(double St) // Funkcija aprekina maksu
 {
-	return 3.14*R*R;
-
-}
-
-double fig_l(double R1, double R2) // Funkcija iesvitrotas fig. aprekinasanai
-{
-	double Lielais, Mazais, Baltais, R3;
-	R3 = R2/2;
-	Lielais = circle_area(R1); // Visa rinka laukums
-	Mazais = circle_area(R3); // Maza iekrasota rinka laukums
-	Baltais = circle_area(R2) - 2*Mazais; // Balta laukuma apr.
-	
-	return Lielais - Baltais; // Viss laukums - Baltais laukums = Iekrasotas fig. laukums
+	double Eur;  // Ja stavesanas laiks ir > par 0 un lidz 3, tad cena ir 2 eur
+	if((St > 0 ) &&  (St <= 3))
+	{
+		Eur = 2;
+	}
+// 3 stundas ir 2 eur. Maks 10 eur - 2 = 8 Eur. Pa 8 eur var stavet 16 stundas. 16 + 3 = 19
+	else if ((St > 3) && (St < 19)) // Maks stundu skaits lidz 10 eur ir 19 stundas
+	{
+		Eur = St - 3;   // Atnem 3 stundas, par kuram ir 2 Eur.
+		Eur = 2 + Eur/2; // Pieskaita 2 euro (min maksa), un par katru stundu 0.5 Eur
+	}
+	else if (St >= 19) // Virs 19 stundam ir maks summa = 10 Eur
+	{
+		Eur = 10;
+	}	
+	else if (St == 0) // Ja necik neatstaj, tad ir nulle
+	{
+		Eur = 0;
+	}
+	return Eur;
 }
 
 int main ()
 {
-	double R1, R2;
-	cout << "Ievadiet R1 cm; " << endl;
-	cin >> R1;
-	cout << "Ievadiet R2 cm; " << endl;
-	cin >> R2;
+	double St;
+	cout << "Ievadiet auto stavesanas laiku: " << endl;
+	cin >> St;
 
-	cout << "Iekrasotas figuras laukums ir " << fig_l(R1, R2) << "cm2" << endl;
+	cout << "Maksa par stavvietu ir: "<< maksa(St) << " Eur" << endl;
 		
+	
 	system("pause");
 	return 0;
 }
